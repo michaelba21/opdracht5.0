@@ -1,3 +1,4 @@
+
 const departments = {
     marketing: {
         description: "Marketing omvat verschillende strategieën en activiteiten gericht op het promoten van producten, diensten of merken bij het doelpubliek. Het omvat het begrijpen van de behoeften en voorkeuren van consumenten, het uitvoeren van marktonderzoek, het ontwikkelen van marketingplannen en het implementeren van tactieken om potentiële klanten te bereiken en te betrekken. Marketingprofessionals analyseren markttrends, identificeren doelmarkten en creëren overtuigende boodschappen en communicatiestrategieën om merkbekendheid op te bouwen, klantenwerving te stimuleren en klantloyaliteit te bevorderen",
@@ -18,12 +19,8 @@ const departments = {
             {
                 title: "Branding Agent",
                 description: "Een Branding Agent is verantwoordelijk voor het vaststellen en handhaven van een consistente merkafbeelding en identiteit op verschillende marketingkanalen. Ze ontwikkelen richtlijnen voor het merk, positionering en berichtenstrategieën. Ze houden toezicht op productlanceringen, reclamecampagnes en inspanningen op het gebied van merkcommunicatie. Ze volgen de prestaties van het merk, voeren marktonderzoek uit en doen aanbevelingen om de merkperceptie en merkwaarde te verbeteren."
-            },
-            {
-                title: "Marktonderzoeksanalist",
-                description: "Een marktonderzoeksanalist voert diepgaand onderzoek uit om gegevens te verzamelen en te analyseren over markttrends, consumentenvoorkeuren en concurrentieactiviteiten. Ze ontwerpen en voeren enquêtes, focusgroepen en interviews uit om relevante informatie te verzamelen. Ze interpreteren gegevens, genereren inzichten en bereiden rapporten voor met bruikbare aanbevelingen. Ze helpen bedrijven geïnformeerde beslissingen te nemen over productontwikkeling, doelmarkten, prijsstrategieën en marketingcampagnes."
-            },
-        ],
+            }
+        ]
     },
     sales: {
         description: "Sales omvat activiteiten en strategieën die gericht zijn op het genereren van omzet door het verkopen van producten, diensten of oplossingen aan klanten. Het draait om het opbouwen van relaties, het identificeren van klantbehoeften en het overtuigend communiceren van de waarde en voordelen van een product of dienst aan potentiële kopers. Verkoopprofessionals spelen een cruciale rol bij het stimuleren van bedrijfsgroei en het behalen van omzetdoelstellingen. Ze zoeken naar en kwalificeren leads, hebben directe interacties met klanten, onderhandelen over contracten en sluiten deals.",
@@ -61,14 +58,108 @@ const departments = {
             },
             {
                 title: "Client Success Manager",
-                description: "Een accountmanager klantsucces richt zich op het opbouwen en onderhouden van sterke relaties met belangrijke klanten. Ze werken nauw samen met klanten om hun doelen te begrijpen, aan hun behoeften te voldoen en ervoor te zorgen dat ze waarde halen uit de geboden producten of diensten. Accountmanagers klantsucces engageren zich proactief met klanten, bieden begeleiding en identificeren kansen voor upselling of cross-selling."
+                description: "Een accountmanager klantsucces richt zich op het opbouwen en onderhouden van sterke relaties met belangrijke klanten. Ze werken nauw samen met klanten om hun doelen te begrijpen, aan hun behoeften te voldoen en ervoor te zorgen dat ze waarde halen uit de geboden producten of diensten. Accountmanagers klantsucces engageren zich proactief met klanten, bieden begeleiding en identificeren kansen voor upselling ou cross-selling."
             },
             {
                 title: "Customer Experience Manager",
                 description: "A Customer Experience Manager is verantwoordelijk voor het creëren en implementeren van strategieën om de algehele klantervaring te verbeteren. Ze analyseren klantinteracties, identificeren pijnpunten en ontwikkelen initiatieven om de klanttevredenheid en -loyaliteit te vergroten. Klantbelevingsmanagers werken samen met verschillende afdelingen om de klantgerichtheid van het bedrijf te verbeteren en klantgerichte processen en beleid te ontwikkelen."
             }
-        ],
+        ]
+    }
+};
+
+// Opdracht 1 - Gegevens aanspreken
+// Opdracht 1a
+console.log(`De afdeling Sales heeft ${departments.sales.numberOfEmployees} medewerkers`);
+
+// Opdracht 1b
+console.log(`Marketing is een leuke afdeling om te werken. ${departments.marketing.description}`);
+
+// Opdracht 1c
+// aantal medewerkers
+console.log(`De afdeling Customer Service heeft ${departments["customer-service"].numberOfEmployees} medewerkers`);
+
+// Opdracht 1d
+// verkoopmanagerJob beschrijving
+const verkoopmanagerJob = departments.sales.jobs.find(job => job.title === "Verkoopmanager");
+console.log(`Sales is een uitdagende afdeling om te werken als Verkoopmanager. ${verkoopmanagerJob.description}`);
+
+// OPDRACHT 2 - PROMPTEN EN BESLISSEN
+// Opdracht 2a
+// keuze tussen afdeling
+const departmentChoice = prompt('Over welke afdeling wil je meer informatie? Kies uit: [marketing / sales / customer-service]').toLowerCase();
+console.log(departmentChoice);
+
+// Opdracht 2b en 2c
+// maken keuze tussen verschillende afdeling keuze functionaldus departments[departmentChoice] 2X
+if (departments[departmentChoice]) {
+    console.log(`Je koos ${departmentChoice}. ${departments[departmentChoice].description}`);
+    document.getElementById('department-description').textContent = departments[departmentChoice].description;
+} else {
+    console.error('Ongeldige keuze. Probeer het opnieuw door de pagina te verversen');
+    document.getElementById('error-message').textContent = 'Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.';
+}
+
+// OPDRACHT 3 - EEN NIEUWE PROMPT (uitgecommentarieerd volgens opdracht)
+// Hieronder staat de code voor opdracht 3, maar deze is nu uitgecommentarieerd
+/*
+// Opdracht 3a
+const roleChoiceMarketing = prompt(
+    `Je koos marketing. Over welke functie wil je meer weten? Voer een getal tussen 0 en 3 in.
+    0: ${departments.marketing.jobs[0].title},
+    1: ${departments.marketing.jobs[1].title},
+    2: ${departments.marketing.jobs[2].title},
+    3: ${departments.marketing.jobs[3].title}`
+);
+
+// Opdracht 3b en 3c
+if (roleChoiceMarketing >= 0 && roleChoiceMarketing <= 3) {
+    const role = departments.marketing.jobs[roleChoiceMarketing];
+    console.log(`Je koos ${role.title}. Een uitdagende rol! ${role.description}`);
+    document.getElementById('role-title').textContent = role.title;
+    document.getElementById('role-description').textContent = role.description;
+} else {
+    console.error("Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.");
+    document.getElementById('error-message').textContent = 'Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.';
+}
+*/
+
+// OPDRACHT 4 - SAMENVOEGEN
+// Opdracht 4a - Zet code uit opdracht 2 weer aan (bovenstaande code is al actief)
+// if (x)
+//     console.loge (x...X . n)
+
+if (departments[departmentChoice]) {
+    console.log(`${departmentChoice} is een leuke afdeling om te werken. Er werken op dit moment ${departments[departmentChoice].numberOfEmployees} medewerkers.`);
+    
+    // Opdracht 4b
+    // dit is zichtbaar op website page keuze 0-3
+    const roleChoice = prompt(
+        `Je koos ${departmentChoice}. Over welke functie wil je meer weten? Voer een getal tussen 0 en 3 in.
+        0: ${departments[departmentChoice].jobs[0].title},
+        1: ${departments[departmentChoice].jobs[1].title},
+        2: ${departments[departmentChoice].jobs[2].title},
+        3: ${departments[departmentChoice].jobs[3].title}`
+    );
+    
+    // Opdracht 4c
+    // dit code maakt role selectie tussen veschillende department main job en sub job actual met uitleg daarbij
+    if (roleChoice >= 0 && roleChoice <= 3) {
+        const role = departments[departmentChoice].jobs[roleChoice];
+        console.log(`Je koos ${role.title}. Een uitdagende rol! ${role.description}`);
+        
+        // Update HTML elements
+        // document.getElementById() is a method that allows you to access and manipulate an HTML element on your webpage by its unique id attribute.
+        
+        document.getElementById('role-title').textContent = role.title;
+        document.getElementById('role-description').textContent = role.description;
+        document.getElementById('error-message').textContent = '';
+    } else {
+        console.error("Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.");
+        document.getElementById('error-message').textContent = 'Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.';
     }
 }
 
-console.log(departments);
+// OPDRACHT 5 - BONUS
+// Deze functionaliteit is al geïmplementeerd in bovenstaande code
+// waarbij we de DOM-elementen updaten met de geselecteerde informatie
