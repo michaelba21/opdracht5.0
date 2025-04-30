@@ -81,8 +81,8 @@ console.log(`De afdeling Customer Service heeft ${departments["customer-service"
 
 // Opdracht 1d
 // verkoopmanagerJob beschrijving
-const verkoopmanagerJob = departments.sales.jobs.find(job => job.title === "Verkoopmanager");
-console.log(`Sales is een uitdagende afdeling om te werken als Verkoopmanager. ${verkoopmanagerJob.description}`);
+
+console.log(`Sales is een uitdagende afdeling om te werken als Verkoopmanager. ${departments.sales.jobs.find(job => job.title === "Verkoopmanager").description}`);
 
 // OPDRACHT 2 - PROMPTEN EN BESLISSEN
 // Opdracht 2a
@@ -92,14 +92,17 @@ console.log(departmentChoice);
 
 // Opdracht 2b en 2c
 // maken keuze tussen verschillende afdeling keuze functionaldus departments[departmentChoice] 2X
-if (departments[departmentChoice]) {
-    console.log(`Je koos ${departmentChoice}. ${departments[departmentChoice].description}`);
-    document.getElementById('department-description').textContent = departments[departmentChoice].description;
-} else {
-    console.error('Ongeldige keuze. Probeer het opnieuw door de pagina te verversen');
-    document.getElementById('error-message').textContent = 'Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.';
+switch (departmentChoice) {
+    case 'marketing':
+    case 'sales':
+    case 'customer-service':
+        console.log(`Je koos ${departmentChoice}. ${departments[departmentChoice].description}`);
+        document.getElementById('department-description').textContent = departments[departmentChoice].description;
+        break;
+    default:
+        console.error('Ongeldige keuze. Probeer het opnieuw door de pagina te verversen');
+        document.getElementById('error-message').textContent = 'Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.';
 }
-
 // OPDRACHT 3 - EEN NIEUWE PROMPT (uitgecommentarieerd volgens opdracht)
 // Hieronder staat de code voor opdracht 3, maar deze is nu uitgecommentarieerd
 /*
@@ -144,19 +147,34 @@ if (departments[departmentChoice]) {
     
     // Opdracht 4c
     // dit code maakt role selectie tussen veschillende department main job en sub job actual met uitleg daarbij
-    if (roleChoice >= 0 && roleChoice <= 3) {
-        const role = departments[departmentChoice].jobs[roleChoice];
-        console.log(`Je koos ${role.title}. Een uitdagende rol! ${role.description}`);
+    // if (roleChoice >= 0 && roleChoice <= 3) {
+    //     const role = departments[departmentChoice].jobs[roleChoice];
+    //     console.log(`Je koos ${role.title}. Een uitdagende rol! ${role.description}`);
         
-        // Update HTML elements
-        // document.getElementById() is a method that allows you to access and manipulate an HTML element on your webpage by its unique id attribute.
+    //     // Update HTML elements
+    //     // document.getElementById() is a method that allows you to access and manipulate an HTML element on your webpage by its unique id attribute.
         
-        document.getElementById('role-title').textContent = role.title;
-        document.getElementById('role-description').textContent = role.description;
-        document.getElementById('error-message').textContent = '';
-    } else {
-        console.error("Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.");
-        document.getElementById('error-message').textContent = 'Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.';
+    //     document.getElementById('role-title').textContent = role.title;
+    //     document.getElementById('role-description').textContent = role.description;
+    //     document.getElementById('error-message').textContent = '';
+    // } else {
+    //     console.error("Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.");
+    //     document.getElementById('error-message').textContent = 'Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.';
+    // }
+    switch (Number(roleChoice)) {
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+            const role = departments[departmentChoice].jobs[roleChoice];
+            console.log(`Je koos ${role.title}. Een uitdagende rol! ${role.description}`);
+            document.getElementById('role-title').textContent = role.title;
+            document.getElementById('role-description').textContent = role.description;
+            document.getElementById('error-message').textContent = '';
+            break;
+        default:
+            console.error("Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.");
+            document.getElementById('error-message').textContent = 'Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.';
     }
 }
 
